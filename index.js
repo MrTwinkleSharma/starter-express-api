@@ -73,8 +73,13 @@ const PORT = process.env.PORT || 5000;
 
 
 const server = http.createServer(app);
-const io = socketio(server);
 
+const io = socketio(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: ["*", "http://localhost:3000", 'https://chat-nexus.netlify.app/chats', 'https://chat-nexus.netlify.app'],
+  }
+});
 // const io = new Server(server, {
 //   // const io = require("socket.io")(server, {
 //   pingTimeout: 60000,
