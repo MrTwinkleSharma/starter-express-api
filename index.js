@@ -72,8 +72,8 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "*",
-    // credentials: true,
+    origin: ["*", 'https://chat-nexus.netlify.app/chats', 'https://chat-nexus.netlify.app'],
+    preflightContinue:true
   },
 });
 
