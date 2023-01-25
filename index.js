@@ -16,7 +16,7 @@ app.use(express.json()); // to accept json data
 
 //For CORS Errors
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://chat-nexus.netlify.app');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
@@ -63,8 +63,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "*",
-    
+    origin: "https://chat-nexus.netlify.app",
     // credentials: true,
   },
 });
