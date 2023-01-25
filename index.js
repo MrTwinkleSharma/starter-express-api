@@ -21,7 +21,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   // Set custom headers for CORS
-  
+
   res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Custom-Header');
 
   if (req.method === "OPTIONS") {
@@ -71,12 +71,20 @@ const server = app.listen(
 );
 
 const io = new Server(server, {
-// const io = require("socket.io")(server, {
+  // const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: ["http://localhost:3000", 'https://chat-nexus.netlify.app/chats', 'https://chat-nexus.netlify.app'],
-    preflightContinue:true
+    origin: ["*", "http://localhost:3000", 'https://chat-nexus.netlify.app/chats', 'https://chat-nexus.netlify.app'],
   },
+  handlePreflightRequest: (req, res) => {
+    res.writeHead(200, {
+      "Access-Control-Allow-Origin":"*",
+      "Access-Control-Allow-Methods":"GET, POST",
+      "Access-Control-Allow-Headers":"my-custom-header",
+      "Access-Control-Allow-Credentials":true
+    });
+    res.end();
+  }
 });
 
 io.on("connection", (socket) => {
