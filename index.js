@@ -15,18 +15,21 @@ const app = express();
 app.use(express.json()); // to accept json data
 
 //For CORS Errors
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://chat-nexus.netlify.app');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE', 'OPTIONS');
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://chat-nexus.netlify.app');
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+//   );
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE', 'OPTIONS');
 
-  next();
-});
+//   next();
+// });
 
-app.use(cors());
+app.use(cors({
+  origin:"https://chat-nexus.netlify.app",
+  
+}));
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
