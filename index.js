@@ -16,22 +16,22 @@ const app = express();
 app.use(express.json()); // to accept json data
 
 // // For CORS Errors
-app.use((req, res, next) => {
-  // CORS headers
-  res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  // Set custom headers for CORS
+// app.use((req, res, next) => {
+//   // CORS headers
+//   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+//   // Set custom headers for CORS
 
-  res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Custom-Header');
+//   res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Custom-Header');
 
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-  next();
-});
+//   if (req.method === "OPTIONS") {
+//     return res.status(200).end();
+//   }
+//   next();
+// });
 
 // app.options('*', cors());
-// app.use(cors());
+app.use(cors());
 
 // app.use(cors({
 //   origin:"https://chat-nexus.netlify.app",
