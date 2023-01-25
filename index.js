@@ -26,7 +26,8 @@ app.use(express.json()); // to accept json data
 //   next();
 // });
 
-app.options(cors()) 
+app.options('*', cors());
+
 app.use(cors({
   origin:"https://chat-nexus.netlify.app",
 
