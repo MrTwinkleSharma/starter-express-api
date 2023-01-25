@@ -9,7 +9,6 @@
   },
   "author": "Mr. Twinkle Sharma",
   "dependencies": {
-    "@mui/styles": "^5.11.2",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
